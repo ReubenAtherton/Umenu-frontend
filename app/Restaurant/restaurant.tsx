@@ -12,6 +12,8 @@ const RestaurantPage = () => {
   const { id } = useLocalSearchParams();
   const numericId = Number(id); // Ensure id is parsed as number
 
+  const test = 100;
+
   const meals = data_test[numericId].meals
 
   const starter = meals.filter(meal => meal.category === "starter")
