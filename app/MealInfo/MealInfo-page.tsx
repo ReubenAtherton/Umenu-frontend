@@ -1,19 +1,25 @@
-import { View, Text, Modal, Alert, Pressable, StyleSheet, Image } from 'react-native'
-import React, { useState } from 'react'
+import {
+  View,
+  Text,
+  Modal,
+  Alert,
+  Pressable,
+  StyleSheet,
+  Image,
+} from "react-native";
+import React, { useState } from "react";
 
-import { useLocalSearchParams } from 'expo-router';
+import { useLocalSearchParams } from "expo-router";
 
 const MealInfoPage = () => {
-
   const { id } = useLocalSearchParams();
   const data = useLocalSearchParams();
-    return (
-      <View style={{flex: 1, backgroundColor: 'red', alignContent: 'center'}}>
-        <Text style={{fontSize: 100}}>{id}</Text>
-      </View>
-    )
-  }
-
+  return (
+    <View style={{ flex: 1, backgroundColor: "red", alignContent: "center" }}>
+      <Text style={{ fontSize: 100 }}>{id}</Text>
+    </View>
+  );
+};
 
 //   const [modalVisible, setModalVisible] = useState(false);
 //   return (
@@ -44,7 +50,7 @@ const MealInfoPage = () => {
 //             <View style={{ flex: 1, marginVertical: 0, alignSelf: 'flex-start', width: '100%'}}>
 //               <TextView
 //                 name="Pad Thai"
-//                 description="Thai noodle stir fry with a sweet-savoury-sour sauce scattered with crushed peanuts." 
+//                 description="Thai noodle stir fry with a sweet-savoury-sour sauce scattered with crushed peanuts."
 //                 allergens="Peanuts, soy"
 //                 />
 //             </View>
@@ -59,7 +65,6 @@ const MealInfoPage = () => {
 //     </View>
 //   );
 // };
-
 
 // const TextView = ({ name, description, allergens}: any) => {
 //   return (
@@ -93,18 +98,18 @@ const MealInfoPage = () => {
 const styles = StyleSheet.create({
   centeredView: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'lightblue'
+    justifyContent: "center",
+    alignItems: "center",
+    backgroundColor: "lightblue",
   },
   modalView: {
-    width: '80%',
-    height: '80%',
-    backgroundColor: 'white',
+    width: "80%",
+    height: "80%",
+    backgroundColor: "white",
     borderRadius: 20,
     padding: 35,
-    alignItems: 'center',
-    shadowColor: '#000',
+    alignItems: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -112,8 +117,8 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.25,
     shadowRadius: 4,
     elevation: 20,
-    flexDirection: 'column',
-    justifyContent: 'space-between',
+    flexDirection: "column",
+    justifyContent: "space-between",
   },
   button: {
     borderRadius: 20,
@@ -121,28 +126,24 @@ const styles = StyleSheet.create({
     elevation: 2,
   },
   buttonOpen: {
-    backgroundColor: '#F194FF',
+    backgroundColor: "#F194FF",
   },
   buttonClose: {
-    backgroundColor: '#2196F3',
+    backgroundColor: "#2196F3",
   },
   textStyle: {
-    color: 'white',
-    fontWeight: 'bold',
-    textAlign: 'center',
+    color: "white",
+    fontWeight: "bold",
+    textAlign: "center",
   },
 
   fieldTitle: {
     marginTop: 20,
     marginBottom: 10,
     fontSize: 17,
-    fontWeight: '600',
+    fontWeight: "600",
   },
-  fieldText: {
-
-  }
+  fieldText: {},
 });
 
-
-
-export default MealInfoPage
+export default MealInfoPage;

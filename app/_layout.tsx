@@ -1,11 +1,10 @@
-import { SplashScreen, Stack } from 'expo-router';
-import { useFonts } from 'expo-font'
-import { useEffect } from 'react';
+import { SplashScreen, Stack } from "expo-router";
+import { useFonts } from "expo-font";
+import { useEffect } from "react";
 
 SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
-
   const [fontsLoaded, error] = useFonts({
     "Poppins-Black": require("../assets/fonts/Poppins-Black.ttf"),
     "Poppins-Bold": require("../assets/fonts/Poppins-Bold.ttf"),
@@ -19,24 +18,26 @@ export default function RootLayout() {
   });
 
   useEffect(() => {
-    if(error) throw error;
+    if (error) throw error;
 
-    if(fontsLoaded) SplashScreen.hideAsync();
-  }, [fontsLoaded, error])
+    if (fontsLoaded) SplashScreen.hideAsync();
+  }, [fontsLoaded, error]);
 
-  if(!fontsLoaded && !error) return null
-  
+  if (!fontsLoaded && !error) return null;
+
   return (
     <Stack>
-      <Stack.Screen name="index" options={{headerShown: false}}/>
-      <Stack.Screen name="Restaurant/restaurant" 
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="Restaurant/restaurant"
         options={{
           headerTransparent: true,
-          headerTitle: '',
+          headerTitle: "",
           headerBackTitleVisible: false,
-          headerTintColor: 'white'
-        }}/>
-        <Stack.Screen name="MealInfo/MealInfo-page"/>
+          headerTintColor: "white",
+        }}
+      />
+      <Stack.Screen name="MealInfo/MealInfo-page" />
     </Stack>
   );
 }
