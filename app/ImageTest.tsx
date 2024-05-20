@@ -1,7 +1,5 @@
-import { View, Text } from "react-native";
-import React, { createContext, useEffect } from "react";
-import { useState } from "react";
-import { data, useData } from "./Data/new_data";
+import React from "react";
+import { data } from "./Data/new_data";
 import Horizontal_list from "./FlatList/horizontal_list";
 import { SafeAreaView } from "react-native-safe-area-context";
 

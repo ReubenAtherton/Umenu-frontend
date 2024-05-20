@@ -22,8 +22,6 @@ const RestaurantPage = () => {
       contentContainerStyle={{ paddingBottom: 100 }}
     >
       <View style={styles.image}>{data[numericId].source(styles.image)}</View>
-      {/* potenially could add background */}
-      {/* <View style={{backgroundColor: 'rgba(255, 0, 0, 0.8)'}}> */}
       <View
         style={{
           flexDirection: "column",
@@ -77,14 +75,10 @@ const styles = StyleSheet.create({
   restaurantTitle: {
     marginLeft: 20,
     fontSize: 28,
-    //textDecorationLine: 'underline',
-    //color: 'white' combo with the background colour
   },
   restaurantLocation: {
     fontSize: 15,
     marginLeft: 5,
-    //textDecorationLine: 'underline',
-    //color: 'white' combo with the background colour
   },
 
   courseTitle: {

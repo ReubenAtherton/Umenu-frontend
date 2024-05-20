@@ -1,14 +1,8 @@
 import Home from "./Home/Home";
-import ImageTest from "./ImageTest";
-import { Modal, View } from "react-native";
-import RestaurantPage from "./Restaurant/restaurant";
-import MealInfoPage from "./FlatList/horizontal_list";
 import { data_test } from "./Data/data";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DataProvider } from "./Data/new_data";
-import Horizontal_list from "./FlatList/horizontal_list";
-import ModalWindow from "./MealInfo/Modal";
 
 const index = () => {
   const Stack = createNativeStackNavigator();

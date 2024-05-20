@@ -1,8 +1,7 @@
-import { ReactNode, createContext, useContext, useState } from "react";
+import { createContext, useContext, useState } from "react";
 import { Image, StyleSheet } from "react-native";
 
 // TEST DATA
-// TODO change the images for Thai Tho and Caminata
 export const data = [
   {
     id: 0,

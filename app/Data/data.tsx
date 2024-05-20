@@ -1,5 +1,6 @@
-import { Image, StyleSheet } from "react-native";
+import { Image } from "react-native";
 
+// CURRENTLY USING THIS DATA
 export const data_test = [
   {
     id: 0,

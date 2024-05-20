@@ -81,8 +81,6 @@ const style = StyleSheet.create({
     alignSelf: "center",
     alignItems: "center",
     justifyContent: "center",
-    // backgroundColor: 'rgba(0, 0, 0, 0.07)', potentially add back
-    // borderRadius: 8,
     height: "100%",
     borderBottomWidth: 2,
     borderBottomColor: "black",

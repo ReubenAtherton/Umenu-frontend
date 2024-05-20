@@ -1,19 +1,9 @@
-import {
-  View,
-  Text,
-  Modal,
-  Alert,
-  Pressable,
-  StyleSheet,
-  Image,
-} from "react-native";
-import React, { useState } from "react";
-
+import { View, Text, StyleSheet } from "react-native";
+import React from "react";
 import { useLocalSearchParams } from "expo-router";
 
 const MealInfoPage = () => {
   const { id } = useLocalSearchParams();
-  const data = useLocalSearchParams();
   return (
     <View style={{ flex: 1, backgroundColor: "red", alignContent: "center" }}>
       <Text style={{ fontSize: 100 }}>{id}</Text>

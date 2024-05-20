@@ -4,14 +4,10 @@ import {
   Pressable,
   StyleSheet,
   FlatList,
-  Image,
   Modal,
 } from "react-native";
 import React, { useState } from "react";
-import { Link, useLocalSearchParams } from "expo-router";
 import { Entypo } from "@expo/vector-icons";
-import { FadeIn } from "react-native-reanimated";
-import { data, useData } from "../Data/new_data";
 import { data_test } from "../Data/data";
 
 const Horizontal_list = ({ meals, res_id }: any) => {
@@ -46,7 +42,7 @@ const Horizontal_list = ({ meals, res_id }: any) => {
             </Text>
             <View style={{}}>
               <TextView
-                // TODO update the below fields
+                // TODO: update the below fields
                 description="Thai noodle stir fry with a sweet-savoury-sour sauce scattered with crushed peanuts."
                 allergens="Peanuts, soy"
                 rating="4.2/5"

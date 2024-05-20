@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, Image, TextComponent } from "react-native";
+import { View, Text, StyleSheet } from "react-native";
 import { Link } from "expo-router";
 import SearchBar from "../Search/search-bar";
 import { FlatList } from "react-native";
