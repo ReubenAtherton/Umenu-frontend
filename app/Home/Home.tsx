@@ -1,23 +1,31 @@
-import { View, Text, StyleSheet } from "react-native";
+import React, { useState, useEffect } from "react";
+import { View, Text, StyleSheet, FlatList, Pressable } from "react-native";
 import { Link } from "expo-router";
-import SearchBar from "../Search/search-bar";
-import { FlatList } from "react-native";
-import { Pressable } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
-import { data } from "../Data/new_data";
+import SearchBar from "../Search/search-bar"; // Adjust the path as necessary
+import { data } from "../Data/new_data"; // Adjust the path as necessary
 
 export default function Home() {
+  const [searchQuery, setSearchQuery] = useState("");
+  const [filteredData, setFilteredData] = useState(data);
+
+  useEffect(() => {
+    filterData();
+  }, [searchQuery]);
+
+  const filterData = () => {
+    const filtered = data.filter((restaurant) =>
+      restaurant.name.toLowerCase().includes(searchQuery.toLowerCase())
+    );
+    setFilteredData(filtered);
+  };
+
   return (
-    <SafeAreaView style={styles.safeview}>
-      <SearchBar />
-      <View style={{ marginBottom: 10, alignSelf: "flex-start" }}>
-        <Text style={{ fontWeight: "500", fontSize: 16, marginLeft: 20 }}>
-          Our Recommendations
-        </Text>
-      </View>
+    <View style={styles.safeview}>
+      <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
       <FlatList
         showsVerticalScrollIndicator={false}
-        data={data}
+        data={filteredData}
+        keyExtractor={(item) => item.id.toString()}
         renderItem={({ item }) => (
           <Link
             href={{
@@ -44,7 +52,7 @@ export default function Home() {
           </Link>
         )}
       />
-    </SafeAreaView>
+    </View>
   );
 }
 
@@ -53,7 +61,8 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     alignItems: "center",
     backgroundColor: "white",
-    paddingBottom: 30,
+    flex: 1,
+    paddingTop: 60,
   },
 });
 

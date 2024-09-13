@@ -1,11 +1,10 @@
-import { StatusBar } from "expo-status-bar";
+import React from "react";
 import { StyleSheet, View, TextInput } from "react-native";
 import { FontAwesome } from "@expo/vector-icons";
 
-export default function SearchBar() {
+export default function SearchBar({ searchQuery, setSearchQuery }: any) {
   return (
     <View style={styles.container}>
-      <StatusBar />
       <View style={styles.searchInput}>
         <FontAwesome
           name="search"
@@ -13,7 +12,12 @@ export default function SearchBar() {
           color="black"
           style={{ alignSelf: "center", paddingHorizontal: "2%" }}
         />
-        <TextInput style={{ flex: 1 }} placeholder="Search Restaurants" />
+        <TextInput
+          style={{ flex: 1 }}
+          placeholder="Search Restaurants"
+          value={searchQuery}
+          onChangeText={(text) => setSearchQuery(text)}
+        />
       </View>
     </View>
   );
@@ -25,7 +29,6 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: "90%",
   },
-
   searchInput: {
     flexDirection: "row",
     padding: 4,
