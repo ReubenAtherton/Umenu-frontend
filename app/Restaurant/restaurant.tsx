@@ -158,15 +158,15 @@ const RestaurantPage = () => {
       <Text className="font-psemibold" style={styles.courseTitle}>
         Starters
       </Text>
-      <Horizontal_list meals={starter} res_id={numericId} />
+      <Horizontal_list meal={starters} res_id={numericId} />
       <Text className="font-psemibold" style={styles.courseTitle}>
         Mains
       </Text>
-      <Horizontal_list meals={main} res_id={numericId} />
+      <Horizontal_list meal={mains} res_id={numericId} />
       <Text className="font-psemibold" style={styles.courseTitle}>
         Dessert
       </Text>
-      <Horizontal_list meals={dessert} res_id={numericId} />
+      <Horizontal_list meal={desserts} res_id={numericId} />
     </ScrollView>
   );
 };

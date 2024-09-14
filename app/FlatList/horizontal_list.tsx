@@ -5,18 +5,29 @@ import {
   StyleSheet,
   FlatList,
   Modal,
+  Image,
 } from "react-native";
 import React, { useState } from "react";
 import { Entypo } from "@expo/vector-icons";
 import { data_test } from "../Data/data";
 
-const Horizontal_list = ({ meals, res_id }: any) => {
+const Horizontal_list = ({ meal }: any) => {
   const [modalVisible, setModalVisible] = useState(false); // set back to true
   const [meal_id_to_convert, setSelectedMealId] = useState(null);
 
   const meal_id = Number(meal_id_to_convert);
 
+  const openModal = (meal_id: any) => {
+    setSelectedMealId(meal_id);
+    setModalVisible(true);
+  };
+
   const ModalWindow = () => {
+    if (meal_id_to_convert === null) return null;
+    const selectedMeal = meal.find(
+      (meal: any) => meal.id === meal_id_to_convert
+    );
+
     return (
       <Modal
         animationType="slide"
@@ -28,7 +39,11 @@ const Horizontal_list = ({ meals, res_id }: any) => {
       >
         <View style={modalStyles.centeredView}>
           <View style={modalStyles.modalView}>
-            {data_test[res_id].meals[meal_id].source(modalStyles.modalImage)}
+            {/* {data_test[res_id].meal[meal_id].source(modalStyles.modalImage)} */}
+            <Image
+              source={{ uri: selectedMeal.image_url }}
+              style={modalStyles.modalImage}
+            />
             <Text
               className="font-psemibold"
               style={{
@@ -38,7 +53,7 @@ const Horizontal_list = ({ meals, res_id }: any) => {
                 marginTop: 24,
               }}
             >
-              {data_test[res_id].meals[meal_id].name}
+              {selectedMeal.name}
             </Text>
             <View style={{}}>
               <TextView
@@ -60,17 +75,12 @@ const Horizontal_list = ({ meals, res_id }: any) => {
     );
   };
 
-  const openModal = (meal_id: any) => {
-    setSelectedMealId(meal_id);
-    setModalVisible(true);
-  };
-
   return (
     <View>
       <FlatList
         horizontal
         showsHorizontalScrollIndicator={false}
-        data={meals}
+        data={meal}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.flatListContainer}
         renderItem={({ item, index }) => (
@@ -79,10 +89,11 @@ const Horizontal_list = ({ meals, res_id }: any) => {
               style={styles.pressable}
               onPress={() => openModal(item.id)}
             >
-              <View
-                style={[styles.imageCard, index === meals.length - 1 && {}]}
-              >
-                {item.source(styles.restaurant_image_dimensions)}
+              <View style={[styles.imageCard, index === meal.length - 1 && {}]}>
+                <Image
+                  source={{ uri: item.image_url }}
+                  style={styles.restaurant_image_dimensions}
+                />
               </View>
               <View style={styles.textContainer}>
                 <Text className="font-pregular" style={styles.itemName}>
