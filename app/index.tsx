@@ -15,8 +15,8 @@ const index = () => {
   return (
     <DataProvider>
       {/* <View style={{ backgroundColor: 'white', height: '100%' }}> */}
-      {/* <Home /> */}
-      <TestPage restaurantId={0} />
+      <Home />
+      {/* <TestPage restaurantId={0} /> */}
       {/* <RestaurantPage/> */}
       {/* <MealInfoPage/> */}
       {/* <ImageTest /> */}

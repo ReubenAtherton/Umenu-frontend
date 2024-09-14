@@ -1,16 +1,16 @@
 // api.ts
 import axios from "axios";
 
-export const getRestaurantImage = async (
-  restaurantId: number
-): Promise<string | null> => {
+export const fetchImage = async (restaurantId: number) => {
   try {
     const response = await axios.get(
-      `http://192.168.0.160:8000/restaurants/images/${restaurantId}` // Replace <YOUR_LOCAL_IP> with your actual IP address
+      `http://192.168.0.160:8000/restaurants/images/${restaurantId}`
     );
-    return response.data || null;
+    console.log("image url:", response.data.restaurant_image_url);
+    return response;
   } catch (error) {
     console.error("Error fetching restaurant image:", error);
+  } finally {
     return null;
   }
 };

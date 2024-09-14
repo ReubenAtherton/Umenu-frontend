@@ -1,25 +1,21 @@
-// ExampleComponent.tsx
-import React, { useEffect, useState } from "react";
-import { View, Image, Text, ActivityIndicator, StyleSheet } from "react-native";
-import { getRestaurantImage } from "./api"; // Adjust the path as needed
+import React, { useState, useEffect } from "react";
+import { Text, View, Image, ActivityIndicator, StyleSheet } from "react-native";
+import axios from "axios";
 
-interface ExampleComponentProps {
-  restaurantId: number;
-}
-
-const TestPage: React.FC<ExampleComponentProps> = ({ restaurantId }) => {
+const TestPage = ({ restaurantId }: { restaurantId: number }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
     const fetchImage = async () => {
       try {
-        const url = await getRestaurantImage(restaurantId);
-        setImageUrl(url);
-        console.log(url);
+        const response = await axios.get(
+          `http://192.168.0.160:8000/restaurants/images/${restaurantId}`
+        );
+        setImageUrl(response.data.restaurant_image_url);
+        console.log("Fetched Image URL:", response.data.restaurant_image_url);
       } catch (error) {
-        console.error("Failed to fetch image:", error);
-        setImageUrl(null);
+        console.error("Error fetching restaurant image:", error);
       } finally {
         setLoading(false);
       }
@@ -29,15 +25,17 @@ const TestPage: React.FC<ExampleComponentProps> = ({ restaurantId }) => {
   }, [restaurantId]);
 
   if (loading) {
-    return;
-    <ActivityIndicator />;
+    return <ActivityIndicator />;
   }
 
   return (
     <View style={styles.container}>
       {imageUrl ? (
-        //<Text>{imageUrl}</Text>
-        <Image source={require("./restaurant-image.png")} />
+        <Image
+          source={{ uri: imageUrl }}
+          style={styles.image}
+          resizeMode="contain"
+        />
       ) : (
         <Text>No image found</Text>
       )}
@@ -47,9 +45,13 @@ const TestPage: React.FC<ExampleComponentProps> = ({ restaurantId }) => {
 
 const styles = StyleSheet.create({
   container: {
-    alignItems: "center",
-    justifyContent: "center",
     flex: 1,
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  image: {
+    width: 300, // Adjust size as needed
+    height: 300,
   },
 });
 
