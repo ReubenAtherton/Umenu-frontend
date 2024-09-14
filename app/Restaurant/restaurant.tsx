@@ -15,6 +15,23 @@ import { data_test } from "../Data/data";
 import axios from "axios";
 import { Entypo } from "@expo/vector-icons";
 
+interface Meal {
+  id: number;
+  name: string;
+  price: string;
+  image_url: string;
+}
+
+interface Restaurant {
+  id: number;
+  name: string;
+  location: string;
+  restaurant_image_url: string;
+  starters: Meal[];
+  mains: Meal[];
+  desserts: Meal[];
+}
+
 const RestaurantPage = () => {
   const { id } = useLocalSearchParams();
   const numericId = Number(id); // Ensure id is parsed as number
@@ -26,9 +43,12 @@ const RestaurantPage = () => {
     height: 0,
   });
 
-  const [starters, setStarters] = useState<string | null>(null);
-  const [mains, setMains] = useState<string | null>(null);
-  const [desserts, setDesserts] = useState<string | null>(null);
+  const [restaurant_data, setRestaurantData] = useState<Restaurant | null>(
+    null
+  );
+  // const [starters, setStarters] = useState<string | null>(null);
+  // const [mains, setMains] = useState<string | null>(null);
+  // const [desserts, setDesserts] = useState<string | null>(null);
 
   const [loading, setLoading] = useState<boolean>(true);
 
@@ -38,10 +58,11 @@ const RestaurantPage = () => {
         const response = await axios.get(
           `http://192.168.0.160:8000/restaurants/${numericId}`
         );
-        setRestaurantImage(response.data.restaurant_image_url);
-        setStarters(response.data.starters);
-        setMains(response.data.mains);
-        setDesserts(response.data.desserts);
+        setRestaurantData(response.data);
+        // setRestaurantImage(response.data.restaurant_image_url);
+        // setStarters(response.data.starters);
+        // setMains(response.data.mains);
+        // setDesserts(response.data.desserts);
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
       } finally {
@@ -53,12 +74,12 @@ const RestaurantPage = () => {
   }, [numericId]);
 
   useEffect(() => {
-    if (restaurant_image) {
-      Image.getSize(restaurant_image, (width, height) => {
+    if (restaurant_data?.restaurant_image_url) {
+      Image.getSize(restaurant_data.restaurant_image_url, (width, height) => {
         setImageDimensions({ width, height });
       });
     }
-  }, [restaurant_image]);
+  }, [restaurant_data]);
 
   if (loading) {
     return <ActivityIndicator />;
@@ -80,9 +101,12 @@ const RestaurantPage = () => {
   const dessert = meals.filter((meal) => meal.category === "dessert");
 
   // needs to be !restaurant_image || loading otherwise will not show
-  if (!restaurant_image || !starters || !mains || !desserts || loading) {
+  if (!restaurant_data) {
     return <Text>Loading..</Text>;
   }
+
+  const { restaurant_image_url, starters, mains, desserts, name, location } =
+    restaurant_data;
 
   return (
     <ScrollView
@@ -92,7 +116,7 @@ const RestaurantPage = () => {
       {/* <View style={styles.image}>{data[numericId].source(styles.image)}</View> */}
       <View style={styles.container}>
         <Image
-          source={{ uri: restaurant_image }}
+          source={{ uri: restaurant_data.restaurant_image_url }}
           style={{
             width: imageDimensions.width,
             height: imageDimensions.height,
@@ -109,7 +133,7 @@ const RestaurantPage = () => {
         }}
       >
         <Text className="font-psemibold" style={styles.restaurantTitle}>
-          {data[numericId].name}
+          {name}
         </Text>
         <View
           style={{
@@ -126,7 +150,7 @@ const RestaurantPage = () => {
             style={{ marginLeft: 10 }}
           />
           <Text className="font-medium	" style={styles.restaurantLocation}>
-            {data[numericId].location}
+            {location}
           </Text>
         </View>
       </View>
