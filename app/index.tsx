@@ -3,6 +3,7 @@ import { data_test } from "./Data/data";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
 import { DataProvider } from "./Data/new_data";
+import TestPage from "./TestPages/TestPage";
 
 const index = () => {
   const Stack = createNativeStackNavigator();
@@ -14,7 +15,8 @@ const index = () => {
   return (
     <DataProvider>
       {/* <View style={{ backgroundColor: 'white', height: '100%' }}> */}
-      <Home />
+      {/* <Home /> */}
+      <TestPage restaurantId={0} />
       {/* <RestaurantPage/> */}
       {/* <MealInfoPage/> */}
       {/* <ImageTest /> */}
