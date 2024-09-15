@@ -37,7 +37,6 @@ export default function RootLayout() {
           headerTintColor: "white",
         }}
       />
-      <Stack.Screen name="MealInfo/MealInfo-page" />
     </Stack>
   );
 }

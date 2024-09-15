@@ -87,7 +87,7 @@ const RestaurantPage = () => {
       {/* <View style={styles.image}>{data[numericId].source(styles.image)}</View> */}
       <View style={styles.container}>
         <Image
-          source={{ uri: restaurant_data.restaurant_image_url }}
+          source={{ uri: restaurant_image_url }}
           style={{
             width: imageDimensions.width,
             height: imageDimensions.height,
