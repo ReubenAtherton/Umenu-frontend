@@ -88,10 +88,16 @@ const RestaurantPage = () => {
         <Image
           source={{ uri: restaurant_image_url }}
           style={{
-            width: imageDimensions.width,
-            height: imageDimensions.height,
+            // width: imageDimensions.width,
+            // height: imageDimensions.height,
+            // width: 410,
+            // height: 273.5,
+            width: "100%", // Full width of the screen or container
+            aspectRatio: 16 / 9, // Set a standard aspect ratio (16:9, 4:3, etc.)
+            resizeMode: "cover",
+            //height: 200,
           }}
-          resizeMode="contain"
+          //resizeMode="contain"
         />
       </View>
 
