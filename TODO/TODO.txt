@@ -1,8 +1,8 @@
-- add styling to handle the image issues inside the restaurant page
-- add more data to the db (python), add descriptions and allergies to show inside the individual meal info window
+- add styling to handle the image issues inside the restaurant page *DONE*
+- add more data to the db (python), add descriptions and allergies to show inside the individual meal info window 
 - add splash screen with logo?
 - add reviews section (this will probably need a user account which is another step)
 - 
-- improve home page
+- improve home page * 1/2 DONE*
 - add more restaurants
 - try to make it more realistic
