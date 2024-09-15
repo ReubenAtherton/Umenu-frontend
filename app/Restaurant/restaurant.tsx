@@ -10,8 +10,6 @@ import React, { useState, useEffect } from "react";
 import MenuReviewBar from "../menu-review-bar";
 import Horizontal_list from "../FlatList/horizontal_list";
 import { useLocalSearchParams } from "expo-router";
-import { data } from "../Data/new_data";
-import { data_test } from "../Data/data";
 import axios from "axios";
 import { Entypo } from "@expo/vector-icons";
 
@@ -35,21 +33,13 @@ interface Restaurant {
 const RestaurantPage = () => {
   const { id } = useLocalSearchParams();
   const numericId = Number(id); // Ensure id is parsed as number
-  const meals = data_test[numericId].meals;
-
-  const [restaurant_image, setRestaurantImage] = useState<string | null>(null);
   const [imageDimensions, setImageDimensions] = useState({
     width: 0,
     height: 0,
   });
-
   const [restaurant_data, setRestaurantData] = useState<Restaurant | null>(
     null
   );
-  // const [starters, setStarters] = useState<string | null>(null);
-  // const [mains, setMains] = useState<string | null>(null);
-  // const [desserts, setDesserts] = useState<string | null>(null);
-
   const [loading, setLoading] = useState<boolean>(true);
 
   useEffect(() => {
@@ -59,10 +49,6 @@ const RestaurantPage = () => {
           `http://192.168.0.160:8000/restaurants/${numericId}`
         );
         setRestaurantData(response.data);
-        // setRestaurantImage(response.data.restaurant_image_url);
-        // setStarters(response.data.starters);
-        // setMains(response.data.mains);
-        // setDesserts(response.data.desserts);
       } catch (error) {
         console.error("Error fetching restaurant data:", error);
       } finally {
@@ -84,21 +70,6 @@ const RestaurantPage = () => {
   if (loading) {
     return <ActivityIndicator />;
   }
-
-  // console.log("restaurant:", restaurant_image);
-  // console.log("starters:", starters);
-  // console.log("mains:", mains);
-  // console.log("desserts:", desserts);
-
-  // if(restaurant != null) {
-  //   const starter = restaurant.filter((meal) => meal.category === "starter");
-  //   const main = meals.filter((meal) => meal.category === "main");
-  //   const dessert = meals.filter((meal) => meal.category === "dessert");
-  // }
-
-  const starter = meals.filter((meal) => meal.category === "starter");
-  const main = meals.filter((meal) => meal.category === "main");
-  const dessert = meals.filter((meal) => meal.category === "dessert");
 
   // needs to be !restaurant_image || loading otherwise will not show
   if (!restaurant_data) {

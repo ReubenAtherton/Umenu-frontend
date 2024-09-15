@@ -9,13 +9,10 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { Entypo } from "@expo/vector-icons";
-import { data_test } from "../Data/data";
 
 const Horizontal_list = ({ meal }: any) => {
   const [modalVisible, setModalVisible] = useState(false); // set back to true
   const [meal_id_to_convert, setSelectedMealId] = useState(null);
-
-  const meal_id = Number(meal_id_to_convert);
 
   const openModal = (meal_id: any) => {
     setSelectedMealId(meal_id);
@@ -39,7 +36,6 @@ const Horizontal_list = ({ meal }: any) => {
       >
         <View style={modalStyles.centeredView}>
           <View style={modalStyles.modalView}>
-            {/* {data_test[res_id].meal[meal_id].source(modalStyles.modalImage)} */}
             <Image
               source={{ uri: selectedMeal.image_url }}
               style={modalStyles.modalImage}
