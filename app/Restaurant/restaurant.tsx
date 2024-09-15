@@ -84,7 +84,6 @@ const RestaurantPage = () => {
       showsVerticalScrollIndicator={false}
       contentContainerStyle={{ paddingBottom: 100 }}
     >
-      {/* <View style={styles.image}>{data[numericId].source(styles.image)}</View> */}
       <View style={styles.container}>
         <Image
           source={{ uri: restaurant_image_url }}
