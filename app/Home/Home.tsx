@@ -6,6 +6,7 @@ import {
   FlatList,
   Pressable,
   Image,
+  ScrollView,
 } from "react-native";
 import { Link } from "expo-router";
 import SearchBar from "../Search/search-bar"; // Adjust the path as necessary
@@ -45,6 +46,7 @@ export default function Home() {
     filterData();
   }, [searchQuery, restaurant_data]);
 
+  // Filter restaurants based on the search query
   const filterData = () => {
     const filtered = restaurant_data.filter((restaurant) =>
       restaurant.name.toLowerCase().includes(searchQuery.toLowerCase())
@@ -52,9 +54,9 @@ export default function Home() {
     setFilteredData(filtered);
   };
 
-  // Render each restaurant
+  // Render each restaurant card (for both lists)
   const renderRestaurant = ({ item }: { item: RestaurantCard }) => (
-    <View style={cardStyles.imageDimensions}>
+    <View style={cardStyles.cardContainer}>
       <Link
         href={{
           pathname: "./Restaurant/restaurant",
@@ -66,17 +68,13 @@ export default function Home() {
       >
         <Pressable>
           <View style={cardStyles.imageCard}>
-            <View style={cardStyles.imageDimensions}>
-              <Image
-                source={{ uri: item.restaurant_image_url }} // Use the image URL from the data
-                style={cardStyles.home_image_dimensions}
-              />
-              <View style={cardStyles.textContainer}>
-                <Text style={cardStyles.nameTextStyle}>{item.name}</Text>
-                <Text style={cardStyles.locationTextStyle}>
-                  {item.location}
-                </Text>
-              </View>
+            <Image
+              source={{ uri: item.restaurant_image_url }} // Use the image URL from the data
+              style={cardStyles.home_image_dimensions}
+            />
+            <View style={cardStyles.textContainer}>
+              <Text style={cardStyles.nameTextStyle}>{item.name}</Text>
+              <Text style={cardStyles.locationTextStyle}>{item.location}</Text>
             </View>
           </View>
         </Pressable>
@@ -87,35 +85,94 @@ export default function Home() {
   return (
     <View style={styles.safeview}>
       <SearchBar searchQuery={searchQuery} setSearchQuery={setSearchQuery} />
-      <FlatList
-        showsVerticalScrollIndicator={false}
-        data={filteredData} // Pass the fetched restaurant data to FlatList
-        renderItem={renderRestaurant} // Render each item using renderRestaurant
-        keyExtractor={(item) => item.id.toString()} // Use id as the unique key for each restaurant
-      />
+      {searchQuery !== "" && (
+        <FlatList
+          data={filteredData} // Show filtered data when a query is present
+          renderItem={renderRestaurant} // Render each search result
+          keyExtractor={(item) => item.id.toString()}
+          showsVerticalScrollIndicator={false}
+        />
+      )}
+      {searchQuery === "" && (
+        <ScrollView
+          showsVerticalScrollIndicator={false}
+          contentContainerStyle={{}}
+        >
+          <Text className="font-psemibold" style={cardStyles.courseTitle}>
+            Our Recommendations
+          </Text>
+          <FlatList
+            horizontal
+            contentContainerStyle={styles.flatListContainer}
+            showsHorizontalScrollIndicator={false}
+            data={restaurant_data} // Pass the original restaurant data
+            renderItem={renderRestaurant} // Render each item using renderRestaurant
+            keyExtractor={(item) => item.id.toString()}
+            pagingEnabled
+            snapToAlignment="start"
+            snapToInterval={360}
+            decelerationRate="fast"
+          />
+          <Text className="font-psemibold" style={cardStyles.courseTitle}>
+            Top Reviews
+          </Text>
+          <FlatList
+            horizontal
+            contentContainerStyle={styles.flatListContainer}
+            showsHorizontalScrollIndicator={false}
+            data={restaurant_data} // Pass the original restaurant data
+            renderItem={renderRestaurant} // Render each item using renderRestaurant
+            keyExtractor={(item) => item.id.toString()}
+            pagingEnabled
+            snapToAlignment="start"
+            snapToInterval={360}
+            decelerationRate="fast"
+          />
+          <Text className="font-psemibold" style={cardStyles.courseTitle}>
+            Nearby
+          </Text>
+          <FlatList
+            horizontal
+            contentContainerStyle={styles.flatListContainer}
+            showsHorizontalScrollIndicator={false}
+            data={restaurant_data} // Pass the original restaurant data
+            renderItem={renderRestaurant} // Render each item using renderRestaurant
+            keyExtractor={(item) => item.id.toString()}
+            pagingEnabled
+            snapToAlignment="start"
+            snapToInterval={360}
+            decelerationRate="fast"
+          />
+        </ScrollView>
+      )}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
   safeview: {
-    justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "white",
+    backgroundColor: "#F8F8F8",
     flex: 1,
     paddingTop: 60,
+  },
+  flatListContainer: {
+    paddingHorizontal: 10,
+    marginTop: 5,
   },
 });
 
 const cardStyles = StyleSheet.create({
   imageCard: {
-    backgroundColor: "rgba(0,0,0,0.05)",
-    borderRadius: 10,
+    borderTopEndRadius: 10,
+    borderTopStartRadius: 10,
     overflow: "hidden",
-    marginTop: 20,
+    marginVertical: 10,
     flexDirection: "column",
   },
-  imageDimensions: {},
+  cardContainer: {
+    marginHorizontal: 10,
+  },
   textContainer: {
     margin: 10,
   },
@@ -124,12 +181,19 @@ const cardStyles = StyleSheet.create({
     fontWeight: "500",
   },
   locationTextStyle: {
-    color: "rgba(0, 0, 0, 0.6)",
+    color: "rgba(0, 0, 0, 0.7)",
     marginVertical: 5,
   },
   home_image_dimensions: {
-    height: 150,
+    borderRadius: 10,
     width: 330,
+    aspectRatio: 16 / 9,
     resizeMode: "cover",
+  },
+  courseTitle: {
+    marginBottom: 5,
+    fontSize: 17,
+    width: "100%",
+    paddingHorizontal: 20,
   },
 });

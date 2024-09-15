@@ -13,8 +13,9 @@ export default function SearchBar({ searchQuery, setSearchQuery }: any) {
           style={{ alignSelf: "center", paddingHorizontal: "2%" }}
         />
         <TextInput
-          style={{ flex: 1 }}
-          placeholder="Search Restaurants"
+          style={{ flex: 1, fontSize: 17 }}
+          placeholder="Search Umenu"
+          placeholderTextColor={"rgba(0, 0, 0, 0.5)"}
           value={searchQuery}
           onChangeText={(text) => setSearchQuery(text)}
         />
@@ -25,17 +26,20 @@ export default function SearchBar({ searchQuery, setSearchQuery }: any) {
 
 const styles = StyleSheet.create({
   container: {
-    marginVertical: 20,
+    // marginVertical: 10,
+    marginBottom: 20,
+    marginTop: 10,
     justifyContent: "center",
     width: "90%",
   },
   searchInput: {
     flexDirection: "row",
-    padding: 4,
+    padding: 10,
     width: "100%",
-    borderColor: "gray",
-    height: 35,
+    borderColor: "rgba(0, 0, 0, 0.08)",
+    height: 50,
+    backgroundColor: "rgba(0, 0, 0, 0.05)",
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: 15,
   },
 });

@@ -33,10 +33,6 @@ interface Restaurant {
 const RestaurantPage = () => {
   const { id } = useLocalSearchParams();
   const numericId = Number(id); // Ensure id is parsed as number
-  const [imageDimensions, setImageDimensions] = useState({
-    width: 0,
-    height: 0,
-  });
   const [restaurant_data, setRestaurantData] = useState<Restaurant | null>(
     null
   );
@@ -59,14 +55,6 @@ const RestaurantPage = () => {
     fetchRestaurant();
   }, [numericId]);
 
-  useEffect(() => {
-    if (restaurant_data?.restaurant_image_url) {
-      Image.getSize(restaurant_data.restaurant_image_url, (width, height) => {
-        setImageDimensions({ width, height });
-      });
-    }
-  }, [restaurant_data]);
-
   if (loading) {
     return <ActivityIndicator />;
   }
@@ -88,16 +76,10 @@ const RestaurantPage = () => {
         <Image
           source={{ uri: restaurant_image_url }}
           style={{
-            // width: imageDimensions.width,
-            // height: imageDimensions.height,
-            // width: 410,
-            // height: 273.5,
             width: "100%", // Full width of the screen or container
             aspectRatio: 16 / 9, // Set a standard aspect ratio (16:9, 4:3, etc.)
             resizeMode: "cover",
-            //height: 200,
           }}
-          //resizeMode="contain"
         />
       </View>
 

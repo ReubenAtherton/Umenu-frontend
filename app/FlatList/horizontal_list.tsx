@@ -79,6 +79,10 @@ const Horizontal_list = ({ meal }: any) => {
         data={meal}
         keyExtractor={(item) => item.id}
         contentContainerStyle={styles.flatListContainer}
+        pagingEnabled // This enables snapping to the next item
+        snapToAlignment="center" // Align the card to the center when it snaps
+        snapToInterval={230} // Adjust this value to the width of each card plus the spacing between them
+        decelerationRate="fast"
         renderItem={({ item, index }) => (
           <View>
             <Pressable
