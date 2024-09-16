@@ -6,3 +6,6 @@
 - improve home page * 1/2 DONE*
 - add more restaurants
 - try to make it more realistic
+- add more restaurants and create a recommended list so that the app isnt loading in every single restaurant 
+    on start
+- make it so when no data is fetched, there is a loading screen for every api dependent data.
