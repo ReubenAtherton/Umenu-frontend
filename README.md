@@ -1,50 +1,10 @@
-# Welcome to your Expo app 👋
+# Umenu
+Welcome to Umenu, the app that lets you view professionally taken, up to date images of a restaurant's entire menu.
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+I designed and built this app to test an idea for a startup company. I have not made the backend code for this app public.
 
-## Get started
-
-1. Install dependencies
-
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-    npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
-```bash
-npm run reset-project
-```
-
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
-
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+# Screenshots:
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/5b801bce-7d53-4358-8ba4-c5df4c3b970e" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/2f8d45fb-494e-4d63-ac62-b0b00972032b" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/b8a73f18-280c-4054-84ab-49407b6cce13" />
+<img width="300" alt="image" src="https://github.com/user-attachments/assets/c2a6bf46-88c8-4ef2-9cc9-df71332367f8" />
